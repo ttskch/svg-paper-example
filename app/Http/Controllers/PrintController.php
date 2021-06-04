@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Svg\TextareaManipulator;
+
 class PrintController extends Controller
 {
-    public function estimate(string $type)
+    public function estimate(string $type, TextareaManipulator $tm)
     {
         // 普通の値の置換
 
@@ -58,9 +60,23 @@ class PrintController extends Controller
 
         // テキストエリアの置換
 
-        $replacements['%支店住所%'] = "〒460-8508\n愛知県名古屋市中区三の丸3-1-1\nTEL: 052-961-1111";
-        $replacements['%備考%'] = str_repeat('これは備考です', rand(1, 10) * 10);
-        $replacements['%コメント%'] = str_repeat('これはコメントです', rand(1, 10) * 10);
+        $svgText = '<text id="_支店住所_" data-name="%支店住所%" transform="translate(1452 522)" font-size="25" font-family="IPAexGothic"><tspan x="0" y="0">%支店住所%</tspan></text>';
+        $content = "〒460-8508\n愛知県名古屋市中区三の丸3-1-1\nTEL: 052-961-1111";
+        $width = 513;
+        $height = 136;
+        $replacements[$svgText] = $tm->getReplacement($svgText, $content, $width, $height);
+
+        $svgText = '<text id="_備考_" data-name="%備考%" transform="translate(135 2300)" font-size="30" font-family="IPAexGothic"><tspan x="0" y="0">%備考%</tspan></text>';
+        $content = str_repeat('これは備考です', rand(1, 10) * 10);
+        $width = $type === '見積書（金額あり）' ? 1343 : 1827;
+        $height = 235;
+        $replacements[$svgText] = $tm->getReplacement($svgText, $content, $width, $height);
+
+        $svgText = '<text id="_コメント_" data-name="%コメント%" transform="translate(138 2583)" font-size="30" font-family="IPAexGothic"><tspan x="0" y="0">%コメント%</tspan></text>';
+        $content = str_repeat('これはコメントです', rand(1, 10) * 10);
+        $width = 1830;
+        $height = 298;
+        $replacements[$svgText] = $tm->getReplacement($svgText, $content, $width, $height);
 
         // XDファイルではIPAexフォントを使っているが、これをserif/sans-serifに丸める
 
