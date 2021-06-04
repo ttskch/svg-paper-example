@@ -16,4 +16,5 @@ mix.js('resources/js/app.js', 'public/js')
         //
     ])
     .sass('resources/scss/print.scss', 'public/css')
+    .copyDirectory('resources/images', 'public/images')
 ;
