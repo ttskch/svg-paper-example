@@ -16,5 +16,7 @@ mix.js('resources/js/app.js', 'public/js')
         //
     ])
     .sass('resources/scss/print.scss', 'public/css')
+    .js('resources/js/print/見積書（金額あり）.js', 'public/js/print')
+    .js('resources/js/print/見積書（金額なし）.js', 'public/js/print')
     .copyDirectory('resources/images', 'public/images')
 ;
