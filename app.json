@@ -1,0 +1,5 @@
+{
+  "env": {
+    "APP_KEY": "`php artisan --no-ansi key:generate --show`"
+  }
+}
