@@ -7,10 +7,19 @@ export default function (selector, config) {
 
   // 一行テキストを指定した幅以下に保つ
   if ('textLength' in config) {
+    // for firefox
+    // @see https://developer.mozilla.org/ja/docs/Web/API/Element/clientWidth
+    $this.style.display = 'block'
+
     const w = $this.clientWidth
     if (w > config.textLength) {
       $this.querySelector('tspan').setAttribute('textLength', config.textLength)
       $this.querySelector('tspan').setAttribute('lengthAdjust', 'spacingAndGlyphs')
+
+      // for firefox
+      // @see https://bugzilla.mozilla.org/show_bug.cgi?id=890692
+      $this.setAttribute('textLength', config.textLength)
+      $this.setAttribute('lengthAdjust', 'spacingAndGlyphs')
     }
   }
 
