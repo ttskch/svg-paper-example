@@ -7,3 +7,13 @@ Adobe XDでデザインしてSVGでエクスポートしたテンプレートを
 [こちらで実際に動くデモが見られます👍](https://svg-paper-example.herokuapp.com/)
 
 実装内容についての詳細は [こちらのブログ記事](https://blog.ttskch.com/web-app-pdf-printing-best-practice) で解説していますので、ぜひご参照ください。
+
+---
+
+この実装例で実践したことをブラッシュアップしてnpmライブラリ化しました🎉
+
+https://github.com/ttskch/svg-paper
+
+ぜひ使ってみてください！
+
+ライブラリの使い方は [こちらのブログ記事](https://blog.ttskch.com//web-app-pdf-printing-best-practice-npm-library) でも解説しています。
